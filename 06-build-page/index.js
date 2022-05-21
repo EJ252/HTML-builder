@@ -12,6 +12,7 @@ async function func() {
     template = template.toString().replace(regexp, `${htmlRead}`);
     await fs.promises.writeFile(path.join(__dirname, 'project-dist', 'index.html'), template);
   }
+  collectCSS();
 }
 
 async function collectCSS() {
@@ -25,6 +26,7 @@ async function collectCSS() {
       await fs.promises.appendFile(file, currentStyle);
     }
   }
+  copyPatch(newFolder, folder);
 }
 
 const newFolder = path.join(__dirname, 'project-dist', 'assets');
@@ -45,5 +47,3 @@ async function copyPatch(newFolder, folder) {
 }
 
 func();
-collectCSS();
-copyPatch(newFolder, folder);
