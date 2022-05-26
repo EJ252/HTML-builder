@@ -4,6 +4,7 @@ const newFolder = path.join(__dirname, 'files-copy');
 const folder = path.join(__dirname, 'files');
 
 async function func() {
+  await fs.promises.rm(newFolder, {force: true, recursive: true});
   await fs.promises.mkdir(newFolder, {recursive: true});
   let files = await fs.promises.readdir(folder, {withFileTypes: true});
   for (let file of files) {
